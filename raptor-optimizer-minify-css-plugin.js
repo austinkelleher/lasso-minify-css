@@ -10,7 +10,7 @@ function minify(src, options) {
 }
 
 module.exports = function (pageOptimizer, pluginConfig) {
-    pageOptimizer.config.addTransform({
+    pageOptimizer.addTransform({
             contentType: 'css',
             
             name: module.id,
