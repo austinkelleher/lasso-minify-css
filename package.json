@@ -3,7 +3,7 @@
     "description": "Transform for the RaptorJS Optimizer to minify CSS using sqwish",
     "keywords": [
         "raptor-optimizer",
-        "raptor-optimizer-transform",
+        "raptor-optimizer-plugin",
         "css",
         "minify"
     ],
