@@ -9,8 +9,8 @@ function minify(src, options) {
     return sqwish.minify(src, false);
 }
 
-module.exports = function (pageOptimizer, pluginConfig) {
-    pageOptimizer.addTransform({
+module.exports = function (lasso, pluginConfig) {
+    lasso.addTransform({
             contentType: 'css',
 
             name: module.id,
