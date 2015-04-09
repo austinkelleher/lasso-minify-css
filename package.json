@@ -9,7 +9,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/raptorjs/lasso-minify-css.git"
+        "url": "https://github.com/lasso-js/lasso-minify-css.git"
     },
     "scripts": {
         "test": "node_modules/.bin/jshint *.js"
