@@ -17,8 +17,8 @@ module.exports = function (pageOptimizer, pluginConfig) {
 
             stream: false,
 
-            transform: function(code, optimizerContext) {
-                var dependency = optimizerContext.dependency;
+            transform: function(code, lassoContext) {
+                var dependency = lassoContext.dependency;
                 var mergeDuplicates = dependency ? dependency.mergeDuplicates !== false : true;
 
                 var minified = minify(code, {
