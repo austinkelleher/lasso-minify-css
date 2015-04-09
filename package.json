@@ -1,6 +1,6 @@
 {
     "name": "lasso-minify-css",
-    "description": "Transform for the Lasso.js to minify CSS using sqwish",
+    "description": "Transform for Lasso.js to minify CSS using sqwish",
     "keywords": [
         "lasso",
         "lasso-plugin",
