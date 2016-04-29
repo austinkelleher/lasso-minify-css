@@ -9,6 +9,18 @@ function minify(src, options) {
     return sqwish.minify(src, false);
 }
 
+function isInline(lassoContext) {
+    if (lassoContext.inline === true) {
+        return true;
+    }
+
+    if (lassoContext.dependency && lassoContext.dependency.inline === true) {
+        return true;
+    }
+
+    return false;
+}
+
 module.exports = function (lasso, pluginConfig) {
     lasso.addTransform({
             contentType: 'css',
@@ -18,6 +30,11 @@ module.exports = function (lasso, pluginConfig) {
             stream: false,
 
             transform: function(code, lassoContext) {
+                if (pluginConfig.inlineOnly === true && !isInline(lassoContext)) {
+                    // Skip minification when we are not minifying inline code
+                    return code;
+                }
+
                 var dependency = lassoContext.dependency;
                 var mergeDuplicates = dependency ? dependency.mergeDuplicates !== false : true;
 
