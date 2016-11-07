@@ -21,7 +21,7 @@
   ],
   "maintainers": "Patrick Steele-Idem <pnidem@gmail.com>",
   "dependencies": {
-    "sqwish": "~0.2.1"
+    "clean-css": "^3.4.20"
   },
   "devDependencies": {
     "mocha": "~1.15.1",

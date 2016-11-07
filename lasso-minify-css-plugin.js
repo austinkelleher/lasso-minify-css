@@ -1,13 +1,4 @@
-var sqwish = require('sqwish');
-
-function minify(src, options) {
-    if (!options) {
-        options = {};
-    }
-
-    //var strict = options.mergeDuplicates !== false;
-    return sqwish.minify(src, false);
-}
+var CleanCSS = require('clean-css');
 
 function isInline(lassoContext) {
     if (lassoContext.inline === true) {
@@ -21,28 +12,24 @@ function isInline(lassoContext) {
     return false;
 }
 
-module.exports = function (lasso, pluginConfig) {
+module.exports = function(lasso, pluginConfig) {
     lasso.addTransform({
-            contentType: 'css',
+        contentType: 'css',
 
-            name: module.id,
+        name: module.id,
 
-            stream: false,
+        stream: false,
 
-            transform: function(code, lassoContext) {
-                if (pluginConfig.inlineOnly === true && !isInline(lassoContext)) {
-                    // Skip minification when we are not minifying inline code
-                    return code;
-                }
-
-                var dependency = lassoContext.dependency;
-                var mergeDuplicates = dependency ? dependency.mergeDuplicates !== false : true;
-
-                var minified = minify(code, {
-                    mergeDuplicates: mergeDuplicates
-                });
-
-                return minified;
+        transform: function(code, lassoContext) {
+            if (pluginConfig.inlineOnly === true && !isInline(lassoContext)) {
+                // Skip minification when we are not minifying inline code
+                return code;
             }
-        });
+
+            // Imports should not be loaded in. This was the same behavior as
+            // sqwish.
+            pluginConfig.processImport = false;
+            return new CleanCSS(pluginConfig).minify(code).styles;
+        }
+    });
 };
